@@ -1,0 +1,79 @@
+{
+  "success": true,
+  "message": "Resultat de la recherche",
+  "data": {
+    "current_page": 1,
+    "data": [
+      {
+        "id": 2,
+        "category_id": 1,
+        "nom_service": "Distribution/Colis",
+        "description": "ras",
+        "img": "https://d18lkz4dllo6v2.cloudfront.net/cumulus_uploads/entry/2017-08-29/Fotolia_103748444_Subscription_Monthly_M.jpg?w=660",
+        "banner": "https://d18lkz4dllo6v2.cloudfront.net/cumulus_uploads/entry/2017-08-29/Fotolia_103748444_Subscription_Monthly_M.jpg?w=660",
+        "created_at": "2022-07-02T06:45:53.000000Z",
+        "updated_at": "2022-07-02T06:45:53.000000Z",
+        "montant_min": 50,
+        "category": {
+          "id": 1,
+          "nom_category": "sdfsdf",
+          "description": "sdfsdfsdf",
+          "img": "img",
+          "created_at": "2022-07-02T06:38:41.000000Z",
+          "updated_at": "2022-07-28T10:46:10.000000Z"
+        },
+        "translation": [
+          {
+            "id": 15,
+            "table_id": 2,
+            "label": "kilos distrution",
+            "description": "ras",
+            "created_at": "2022-08-01T15:24:58.000000Z",
+            "updated_at": "2022-08-01T15:24:58.000000Z",
+            "locale": "en",
+            "type": "SERVICE"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "category_id": 3,
+        "nom_service": "Relève courrier",
+        "description": "ras",
+        "img": "https://cdn.unitycms.io/images/6epKspJUqhv8fmmgYURl8S.jpg?op=ocroped&val=1200,1200,1000,1000,0,0&sum=gH_pEEdn31M",
+        "banner": "https://cdn.unitycms.io/images/6epKspJUqhv8fmmgYURl8S.jpg?op=ocroped&val=1200,1200,1000,1000,0,0&sum=gH_pEEdn31M",
+        "created_at": "2022-07-02T06:45:53.000000Z",
+        "updated_at": "2022-07-02T06:45:53.000000Z",
+        "montant_min": 50,
+        "category": {
+          "id": 3,
+          "nom_category": "ok",
+          "description": "ok",
+          "img": "https://www.hicom-asia.com/wp-content/uploads/2020/09/noter_onayli_yeminli_tercume-1-600x301.jpg",
+          "created_at": "2022-07-04T17:23:14.000000Z",
+          "updated_at": "2022-07-28T10:50:39.000000Z"
+        },
+        "translation": []
+      }
+    ],
+    "first_page_url": "http://tafadomapiprod_innov.test/api/v1/services/search?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http://tafadomapiprod_innov.test/api/v1/services/search?page=1",
+    "links": [
+      { "url": null, "label": "&laquo; Previous", "active": false },
+      {
+        "url": "http://tafadomapiprod_innov.test/api/v1/services/search?page=1",
+        "label": "1",
+        "active": true
+      },
+      { "url": null, "label": "Next &raquo;", "active": false }
+    ],
+    "next_page_url": null,
+    "path": "http://tafadomapiprod_innov.test/api/v1/services/search",
+    "per_page": 20,
+    "prev_page_url": null,
+    "to": 2,
+    "total": 2
+  }
+}
