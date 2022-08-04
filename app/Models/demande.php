@@ -8,12 +8,17 @@ use App\Models\Agents;
 use App\Models\Service;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Http\Request;
 
 class Demande extends Model
 {
     use HasFactory;
+    private $locale;
 
-
+public function __construct($locale='en')
+{
+    $this->locale=$locale;
+}
 
     protected $table = 'demandes';
 
@@ -36,7 +41,12 @@ class Demande extends Model
     
     public function getservicesAttribute()
     {
-        return Service::where('id', $this->service_id)->first();
+    
+        $request=$this->locale;
+
+        return Service::where('id', $this->service_id)->with(['translation' => function ($query) use ($request) {
+            $query->where([['locale', $request], ['type', "SERVICE"]])->first();
+        }])->first();
     }
 
     public function getuserAttribute()
@@ -71,4 +81,6 @@ class Demande extends Model
     {
         return $this->hasMany(Avis::class);
     }
+
+  
 }

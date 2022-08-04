@@ -25,9 +25,9 @@ class DemandeController extends Controller
     }
 
 
-    public function all()
+    public function all(Request $request)
     {
-        $demande = Demande::all();
+        $demande = (new Demande($request->input('locale','fr')))->all();
         return $this->reply(true, "liste des demandes", $demande);
     }
 
