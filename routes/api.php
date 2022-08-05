@@ -95,7 +95,7 @@ Route::group([
     Route::post('/category/delete/{id}', [AdminCategoryController::class, 'destroy']);
     Route::get('/agent', [AdminAgentController::class, 'index']);
     Route::post('/agent', [AdminAgentController::class, 'store']);
-    Route::put('/agent/dataUpdate/{$id}', [AdminAgentController::class, 'update']);
+    Route::put('/agent/dataUpdate/{id}', [AdminAgentController::class, 'update']);
     Route::get('/chat/read/{userId?}',[AdminChatsController::class,'readChat']);
 
 
