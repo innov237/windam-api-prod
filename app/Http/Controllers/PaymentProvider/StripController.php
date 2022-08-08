@@ -14,9 +14,6 @@ class StripController extends Controller
 {
     public function payIn()
     {
-
-
-   
         $balance = request()->amount;
        
         $validator = Validator::make(array_merge(request()->all(), ["amount" => $balance]), [

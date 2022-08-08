@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4.0||^8.0",
+        "php": "^7.4||^8.1.0",
         "apility/laravel-fcm": "^1.4",
         "barryvdh/laravel-dompdf": "^1.0",
         "darkaonline/l5-swagger": "^8.3",
@@ -17,6 +17,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "srmklive/paypal": "~1.0",
         "stripe/stripe-php": "^7.95",
         "tymon/jwt-auth": "*"

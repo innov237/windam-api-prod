@@ -27,9 +27,9 @@ class UploadController extends Controller
             return $this->reply(true, "image invalide", $validator->errors());
         } 
 
-        $path = ($request->file('image')) ?  $request->file('image')->store('assets/images') : null;
-        return  $this->reply(true, "image uploaded succesfull", $path);
-
+        //$path = ($request->file('image')) ?  $request->file('image')->store('assets/images') : null;
+        //return  $this->reply(true, "image uploaded succesfull", $path);
+ 
         try {
             $imageName = time().'.'.$request->image->extension();
             $path = Storage::disk('s3')->put('images', $request->image);

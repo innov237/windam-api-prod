@@ -46,7 +46,7 @@ Route::group([
     Route::POST('reset-password', [UserController::class, 'resetPassword']);
 
     
-    Route::get('/services/category/all/{locale?}', [ServicesController::class, 'getServiceWithCategory']);
+    Route::get('/services/category/all/{locale}', [ServicesController::class, 'getServiceWithCategory']);
     Route::get('/services/all', [ServicesController::class, 'allServices']);
     Route::get('/category/all', [ServicesController::class, 'allCategory']);
     Route::get('/services/search', [ServicesController::class, 'search']);

@@ -1,7 +1,6 @@
 <?php
 
 use Srmklive\PayPal\Facades\PayPal;
-use Cartalyst\Stripe\Laravel\StripeServiceProvider;
 use Srmklive\PayPal\Providers\PayPalServiceProvider;
     
 return [
@@ -167,7 +166,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
-        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -245,8 +243,7 @@ return [
         //config 
         'FCM'      => LaravelFCM\Facades\FCM::class,
         'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, // Optional
-        'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
-        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class
 
     ],
 

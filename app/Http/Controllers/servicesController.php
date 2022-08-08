@@ -15,27 +15,30 @@ class ServicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getServiceWithCategory($locale="en")
+    public function getServiceWithCategory(Request $request)
     {
+
+        $locale = $request->locale;
         
+        if(empty($locale)){
+            $locale = "fr";
+        }
 
-
-    $allCategory = Category::with(['services'=> function($query) use ($locale){
-        $query->with(['translation' => function ($queryt) use ($locale) {
-            $queryt->where([['locale', $locale], ['type', "SERVICE"]]);
+        $allCategory = Category::with(['services'=> function($query) use ($locale){
+            $query->with(['translation' => function ($queryt) use ($locale) {
+                $queryt->where([['locale', $locale], ['type', "SERVICE"]]);
+            }])->get();
+        },'translation' => function ($query) use ($locale) {
+                $query->where([['locale', $locale], ['type', "CATEGORY"]])->first();
         }])->get();
-    },'translation' => function ($query) use ($locale) {
-            $query->where([['locale', $locale], ['type', "CATEGORY"]])->first();
-        }])->get();
 
-
-       
         if ($allCategory) {
             return $this->reply(true, "liste des categorie", $allCategory);
         } else {
             return $this->reply(false, "Aucune categorie", null);
         }
         return $this->reply(false, "Aucune categorie", null);
+
     }
 
 

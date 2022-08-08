@@ -22,7 +22,7 @@ class Chats extends Migration
             $table->string('message');
             $table->integer('status')->default(0);
             $table->timestamps();
-           $table->foreign('message_id')->references('id')->on('chats');
+            $table->foreign('message_id')->references('id')->on('chats');
             $table->foreign('invoices_id')->references('id')->on('invoices');
             $table->foreign('sender_id')->references('id')->on('users');
             $table->foreign('receiver_id')->references('id')->on('users');
