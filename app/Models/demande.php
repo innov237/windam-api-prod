@@ -41,7 +41,6 @@ public function __construct($locale='en')
     
     public function getservicesAttribute()
     {
-    
         $request=$this->locale;
 
         return Service::where('id', $this->service_id)->with(['translation' => function ($query) use ($request) {

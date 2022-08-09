@@ -19,7 +19,6 @@ class DemandeController extends Controller
             return $this->reply(false, "Utilisateur introuvable", null);
         }
 
-
         $demande = Demande::Where('user_id', auth()->id())->get();
         return $this->reply(true, "Demande dun utilisateur", $demande);
     }
