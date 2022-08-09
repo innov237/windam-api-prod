@@ -25,7 +25,7 @@ class UploadController extends Controller
 
         if ($validator->fails()) {
             return $this->reply(true, "image invalide", $validator->errors());
-        } 
+        }
 
         //$path = ($request->file('image')) ?  $request->file('image')->store('assets/images') : null;
         //return  $this->reply(true, "image uploaded succesfull", $path);

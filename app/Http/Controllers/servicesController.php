@@ -29,7 +29,7 @@ class ServicesController extends Controller
                 $queryt->where([['locale', $locale], ['type', "SERVICE"]]);
             }])->get();
         },'translation' => function ($query) use ($locale) {
-                $query->where([['locale', $locale], ['type', "CATEGORY"]])->first();
+                $query->where([['locale', $locale], ['type', "CATEGORY"]])->get();
         }])->get();
 
         if ($allCategory) {

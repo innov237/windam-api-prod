@@ -23,7 +23,6 @@ class ChatsUserController extends Controller
             return $this->reply(false, "Utilisateur introuvable", null);
         }
        
-
         $alluserChat = Chat::where('receiver_id', auth()->user()->id)->orWhere('sender_id', auth()->user()->id)->reorder('id', 'desc')->get();
 
         return $this->reply(true, "liste de mes message", $alluserChat);
