@@ -18,7 +18,7 @@ class AdminChatsController extends Controller
      */
     public function index()
     {
- 
+    
         $chat = AdminUserChat::where("role_id","!=",1)->get();
         return $this->reply(true,"liste des message reçu",$chat);
     }

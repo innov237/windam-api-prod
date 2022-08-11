@@ -12,7 +12,6 @@ class StatistiqueController extends Controller
 
         $allStat=AdminStat::select("id")->first();
         $allStatUser=AdminStat::count();
-
         return $this->reply(true,"statistique",$allStat );
     }
 

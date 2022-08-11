@@ -42,6 +42,13 @@ class User extends Authenticatable implements JWTSubject
       $count= Chat::where([['status', 0],['receiver_id',$this->id]])->get();
         return count($count);
     }
+    
+    public function getRoleAttribute()
+    {
+
+        //   return $this->categories()->get();
+        return Role::where('id', $this->role_id)->first();
+    }
  
     public function role()
     {
@@ -62,12 +69,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(Resetpasswords::class);
     }
 
-    public function getRoleAttribute()
-    {
-
-        //   return $this->categories()->get();
-        return Role::where('id', $this->role_id)->first();
-    }
+  
 
 
     /**

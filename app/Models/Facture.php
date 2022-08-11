@@ -30,6 +30,7 @@ class Facture extends Model
     
       public function getTotalAmountAttribute()
     {
+        
        /* if ($this->tva == 0) {
             return $this->montant;
         }*/

@@ -13,14 +13,17 @@ use App\Models\User;
 
 class AdminChatsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $chat = AdminUserChat::where("role_id", "!=", 1)->get();
+
+        if (empty(auth()->user())) {
+            return $this->reply(false, "Utilisateur introuvable", null);
+        }
+      // return Chat::select('users.*' )->join('users', 'chats.receiver_id', '=', 'users.id')->groupBy('receiver_id')->reorder('id','desc')->get();
+        // return DB::select('SELECT receiver_id from chats group by receiver_id  order by id desc'  );  
+
+        $chat = AdminUserChat::join('chats','chats.receiver_id','=','users.id')->orderBy('chats.id')->groupBy('chats.receiver_id')->get();
         return $this->reply(true, "liste des message reçu", $chat);
     }
 
@@ -98,7 +101,7 @@ class AdminChatsController extends Controller
                 "channel" => "Chat"
             ]);
 
-/* 
+            /* 
             if (auth()->user()->role->role == "Admin") {
                 $getChat = Chat::where('receiver_id', $request->receiver_id)->update([
                     'status' => 1

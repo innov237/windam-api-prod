@@ -10,7 +10,7 @@ class Chat extends Model
     use HasFactory;
 
 
-    const ADMIN_ID=6;
+    const ADMIN_ID = 6;
     protected $table = 'chats';
 
     protected $primaryKey = 'id';
@@ -23,20 +23,20 @@ class Chat extends Model
         'status'
     ];
 
-    protected $appends = ["invoices","files"];
+    protected $appends = ["invoices", "files"];
 
 
     public function getFilesAttribute()
     {
         return Files::where('chat_id', $this->id)->first();
     }
-    
+
 
     public function getInvoicesAttribute()
-   {
-       return Facture::where('id', $this->invoices_id)->first();
-   }
-/*
+    {
+        return Facture::where('id', $this->invoices_id)->first();
+    }
+    /*
    public function getuserAttribute()
    {
        return User::where('id', $this->user_id)->first();
@@ -50,14 +50,13 @@ class Chat extends Model
        }
    } */
 
-   public function users()
-   {
-       return $this->belongsTo(User::class);
-   }
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 
-   public function facture()
-   {
-       return $this->hasOne(Facture::class);
-   }
-
+    public function facture()
+    {
+        return $this->hasOne(Facture::class);
+    }
 }
