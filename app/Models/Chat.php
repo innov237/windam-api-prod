@@ -26,7 +26,7 @@ class Chat extends Model
     protected $appends = ["invoices","files"];
 
 
- public function getFilesAttribute()
+    public function getFilesAttribute()
     {
         return Files::where('chat_id', $this->id)->first();
     }
