@@ -17,13 +17,13 @@ class AdminChatsController extends Controller
     public function index()
     {
 
+
         if (empty(auth()->user())) {
             return $this->reply(false, "Utilisateur introuvable", null);
         }
-      // return Chat::select('users.*' )->join('users', 'chats.receiver_id', '=', 'users.id')->groupBy('receiver_id')->reorder('id','desc')->get();
-        // return DB::select('SELECT receiver_id from chats group by receiver_id  order by id desc'  );  
 
-        $chat = AdminUserChat::join('chats','chats.receiver_id','=','users.id')->orderBy('chats.id')->groupBy('chats.receiver_id')->get();
+        $chat = AdminUserChat::where("role_id","!=",1)->get();
+
         return $this->reply(true, "liste des message reçu", $chat);
     }
 
@@ -90,7 +90,6 @@ class AdminChatsController extends Controller
             $chat->message = $request->message;
             $chat->status = 0;
             $chat->save();
-
 
 
             DB::commit();

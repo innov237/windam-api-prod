@@ -61,7 +61,7 @@ class User extends Authenticatable implements JWTSubject
     }
     public function chats()
     {
-        return $this->hasMany(Chat::class);
+        return $this->hasMany(Chat::class,'sender_id','id');
     }
 
     public function resetpasswords()

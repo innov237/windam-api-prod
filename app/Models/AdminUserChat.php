@@ -25,8 +25,8 @@ class AdminUserChat extends Model
         'active',
     ];
 
-   // protected $appends = ['chat',"nbunread"];
-    protected $appends = ["nbunread"];
+    protected $appends = ['chat',"nbunread"];
+   // protected $appends = ["nbunread"];
 
 
 
@@ -36,11 +36,11 @@ class AdminUserChat extends Model
         return count($count);
     }
 
- /*    public function getChatAttribute()
+    public function getChatAttribute()
     {
         //return $this->id;
         return Chat::where('receiver_id', $this->id)->orwhere("sender_id", $this->id)->get();
-    } */
+    }
 
     public function chat()
     {

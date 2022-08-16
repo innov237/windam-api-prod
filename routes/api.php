@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\AdminCategoryController;
 use App\Http\Controllers\Backend\AdminServicesController;
 use App\Http\Controllers\StatistiqueController;
 use App\Http\Controllers\TranslationController;
+use App\Http\Controllers\SendMailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,6 +148,7 @@ Route::group([
 
     //authentification
     Route::post('notifyDemande', [DemandeController::class, 'notify']);
+    Route::post('sendMail',[SendMailController::class,'notify']);
 });
 
 /**************************** PayPal && tripe ROUTE *************************/
