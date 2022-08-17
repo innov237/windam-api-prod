@@ -32,7 +32,7 @@ class FcmnotificationController extends Controller
         $url = 'https://fcm.googleapis.com/fcm/send';
 
         // Put your Server Key here
-        $apiKey = "AAAA68_kHWs:APA91bEXBGO2PLTAuGnykDq9l3sGuqcIqWlrZiPRj0NN1rzlV-Utcb2gpQ3P1fsON-0hT4dTODypPZAIWYw4rGbccGYMfGoGDu5EcAoPbh9l172fUmxk6ro8aSGiBZZ-scfdPwlDO3Xi";
+        $apiKey = "AAAASXQ1LDM:APA91bGV5ffRVStcmm-W5C6oNv6MpwMTE_VJlInQLVAbg9uu3AbAXzPV8NxnjWkO1BJVEOxNwPD3zF3ovM_H7qW_hHKEDuw7uXPKoW_J2CUAHkFgImm-KLDiagOMX5P3N62bKgX_SCQP";
 
         // Compile headers in one variable
         $headers = array(
