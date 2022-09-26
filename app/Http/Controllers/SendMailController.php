@@ -18,16 +18,39 @@ class SendMailController extends Controller
 
         try {
             $send = Mail::send('notificationmail', $mailData, function ($message) use ($mailData) {
-                $message->from("support@seremo.co");
-                $message->to("innov237@gmail.com", "Notification")->subject($mailData['subject']);
+                $message->to("franck.godson@yahoo.fr", "Notification");
+                $message->cc("innov237@gmail.com","Notification");
+                $message->subject($mailData['subject']);
             });
     
-    
             return $this->reply(true, 'mail sent', $send);
+
         } catch (\Exception $e) {
-            return $e->getMessage();
+            //return $e->getMessage();
         }
 
        
+    }
+
+    public function sendOtp(Request $request){
+
+        $mailData = [
+            "otp"=> $request->otp,
+            "subject" => $request->subject,
+            "content" => $request->message,
+            "email"=>$request->email,
+        ];
+
+        try {
+            $send = Mail::send('otpmail', $mailData, function ($message) use ($mailData) {
+                $message->to($mailData['email'],"Code de vérification");
+                $message->subject($mailData['subject']);
+            });
+    
+            return $this->reply(true, 'mail sent', $send);
+
+        } catch (\Exception $e) {
+            //return $e->getMessage();
+        }
     }
 }

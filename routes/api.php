@@ -45,7 +45,8 @@ Route::group([
     Route::post('/auth/refresh', [AuthController::class, 'refresh']);
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     Route::POST('reset-password', [UserController::class, 'resetPassword']);
-
+    Route::POST('send-verification-otp',[UserController::class, 'sendVerificationOtp']);
+    Route::POST('verify-otp-or-reset',[UserController::class, 'verifyOtpOrReset']);
     
     Route::get('/services/category/all/{locale}', [ServicesController::class, 'getServiceWithCategory']);
     Route::get('/services/all', [ServicesController::class, 'allServices']);

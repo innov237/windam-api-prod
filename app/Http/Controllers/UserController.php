@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Resetpasswords;
+use App\Http\Controllers\SendMailController;
+
 
 class UserController extends Controller
 {
@@ -97,19 +100,15 @@ class UserController extends Controller
 
         ]);
 
-
-
-
         $getUserInfo = User::find(auth()->user()->id);
-
 
         $getUserInfo->nom = $request->input("nom");
         $getUserInfo->prenom = $request->input("prenom");
         $getUserInfo->tel = $request->input("tel");
         $getUserInfo->ville = $request->input("ville");
         $getUserInfo->email = $request->input("email");
-        if ($getUserInfo->update()) {
 
+        if ($getUserInfo->update()) {
             return $this->reply(true, "Utilisateur modifié avec succès", $getUserInfo);
         } else {
             return $this->reply(false, "Erreur de modification", $getUserInfo);
@@ -132,6 +131,7 @@ class UserController extends Controller
 
       
         $user = User::find(auth()->id());
+
         if (!$user) {
             return $this->reply(false, 'Utilisateur introuvable', null);
 
@@ -146,5 +146,69 @@ class UserController extends Controller
             return $this->reply(true, 'Mot de passe modifié avec succès', $reset);
         }
         return $this->reply(false, 'Erreur de modification', null);
+    }
+
+    public function  sendVerificationOtp(Request $request){
+
+       if(empty($request->input('credentials'))){
+         return $this->reply(false,"Veuillez entrer le compte à réinitialiser",null);
+       }
+
+      $code = random_int(100000, 999999);
+      $user = User::where('email',$request->input('credentials'))->first();
+
+      if($user){
+
+        $exit = resetPasswords::where('user_id',$user->id)->first();
+
+        if($exit){
+            $exit->delete();
+        }
+
+        $result =  Resetpasswords::updateOrCreate([
+            "user_id"=>$user->id,
+            "code"=>$code,
+            "tel"=>$user->tel,
+        ]);
+
+
+        $request->request->add([
+            "otp"=>$code,
+            "subject"=>"Code de vérification windam",
+            "email"=>$request->input('credentials'),
+            "message" =>"Bonjour ".$user->nom ." Vueillez rensiegner ce code dans l'application pour reinitialiser votre compte"
+        ]);
+
+        (new SendMailController())->sendOtp($request);
+        
+        return $this->reply(true,"Code de verification envoyé",null);
+
+      }else{
+        return $this->reply(false,"Ce compte est introuvable",null);
+      }
+    }
+
+    public function verifyOtpOrReset(Request $request){
+
+        $exit =  Resetpasswords::where("code",$request->input('code'))->first();
+
+        if(!$exit){ 
+          return $this->reply(false,"Code de verification incorrect",null); 
+        }
+
+        if($exit && empty($request->input('newPassword'))){
+            return $this->reply(true,"Code de vérification correct",null); 
+        }
+       
+        $user = User::find($exit->user_id);
+        $user->password =  bcrypt($request->input('newPassword'));
+        $save = $user->save();
+
+        if($save){
+            return $this->reply(true,"Mot de passe réinitialisé avec succès. Connectez vous",null); 
+        }
+
+        return $this->reply(false,"Erreur interne veuillez réessayer plustard",null); 
+
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Demande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Controllers\SendMailController;
 
 class DemandeController extends Controller
 {
@@ -69,7 +70,16 @@ class DemandeController extends Controller
         $demande->status = $request->input('status', 0);
 
         $save = $demande->save();
+   
+ 
+        $request->request->add([
+            "user"=> "Nom: ".auth()->user()->nom ." Email: ".auth()->user()->email,
+            "subject"=> "Nouvelle demande",
+            "message"=> $request->description
+        ]);
 
+        (new SendMailController())->notify($request);
+        
        
         if ($save) {
             return $this->reply(true, "Demande crée", $save);
